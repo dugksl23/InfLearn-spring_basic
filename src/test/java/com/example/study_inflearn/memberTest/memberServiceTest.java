@@ -27,7 +27,7 @@ public class memberServiceTest {
         memberService.join(memberA);
         Member byId = memberService.findById(2L);
 
-        //given...
+        //driven...
         Assertions.assertThat(byId.equals(memberA));
 
     }
