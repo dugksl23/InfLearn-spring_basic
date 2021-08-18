@@ -1,5 +1,7 @@
 package com.example.study_inflearn.hello_core.member;
 
+import com.example.study_inflearn.hello_core.discount.DiscountPolicy;
+
 public class MemberServiceImpl implements MemberService{
 
     private final MemberRepository memberRepository = new MemoryMemberRepository();
