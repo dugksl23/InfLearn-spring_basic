@@ -1,7 +1,6 @@
 package com.example.study_inflearn.hello_core.Order;
 
 import com.example.study_inflearn.hello_core.discount.DiscountPolicy;
-import com.example.study_inflearn.hello_core.discount.FixDiscountPolicy;
 import com.example.study_inflearn.hello_core.discount.RateDiscountPolicy;
 import com.example.study_inflearn.hello_core.member.Member;
 import com.example.study_inflearn.hello_core.member.MemberRepository;
@@ -9,11 +8,17 @@ import com.example.study_inflearn.hello_core.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService {
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository(); // 멤조 조회 및 멤버별 Grade 확인
+    private final MemberRepository memberRepository; // 멤조 조회 및 멤버별 Grade 확인
     //private final DiscountPolicy discountPolicy = new FixDiscountPolicy(); // 고정 할인 정책
 
     // ==== 정율 할인 정책 적용 21.08.18 (수)
-    private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
+    private final DiscountPolicy discountPolicy;
+
+    // 즉 service의 구현체는 interface와의 의존관계만을 갖는다.
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {

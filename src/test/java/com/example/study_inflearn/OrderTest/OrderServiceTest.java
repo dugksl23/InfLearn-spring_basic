@@ -1,16 +1,27 @@
 package com.example.study_inflearn.OrderTest;
 
+import com.example.study_inflearn.AppConfig;
 import com.example.study_inflearn.hello_core.Order.Order;
 import com.example.study_inflearn.hello_core.Order.OrderService;
 import com.example.study_inflearn.hello_core.Order.OrderServiceImpl;
 import com.example.study_inflearn.hello_core.member.*;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class OrderServiceTest {
 
-    private final MemberService memberService = new MemberServiceImpl();
-    private final OrderService orderService = new OrderServiceImpl();
+    private MemberService memberService;
+    private OrderService orderService;
+
+    @BeforeEach
+    public void OrderServiceTest() {
+
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+        orderService = appConfig.orderService();
+
+    }
 
     @Test
     public void orderCreateTest() {

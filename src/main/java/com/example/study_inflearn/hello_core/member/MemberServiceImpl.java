@@ -1,12 +1,12 @@
 package com.example.study_inflearn.hello_core.member;
 
-import com.example.study_inflearn.hello_core.discount.DiscountPolicy;
-
 public class MemberServiceImpl implements MemberService{
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
-    // nullPointException 관계로 구현 객체를 지정해줘야 한다.
-    // serviceImpl은 MemoryMemberRepository에 의존 관계를 갖는다.
+    private final MemberRepository memberRepository;
+
+    public MemberServiceImpl(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     @Override
     public void join(Member member) {
