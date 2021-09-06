@@ -34,13 +34,13 @@ public class OrderServiceTest {
 
         // 2. 해당 멤버의 주문 생성
         String itemName = "itemA";
-        int itemPrice = 10000;
+        int itemPrice = 20000;
 
         // when...
         Order order = orderService.createOrder(memberId, itemName, itemPrice);
 
         // driven...
-        Assertions.assertThat(order.getDiscountPrice()).isEqualTo(1000);
+        Assertions.assertThat(order.getDiscountPrice()).isEqualTo(2000);
 
 
     }

@@ -3,6 +3,7 @@ package com.example.study_inflearn;
 import com.example.study_inflearn.hello_core.Order.OrderServiceImpl;
 import com.example.study_inflearn.hello_core.discount.DiscountPolicy;
 import com.example.study_inflearn.hello_core.discount.FixDiscountPolicy;
+import com.example.study_inflearn.hello_core.discount.RateDiscountPolicy;
 import com.example.study_inflearn.hello_core.member.MemberService;
 import com.example.study_inflearn.hello_core.member.MemberServiceImpl;
 import com.example.study_inflearn.hello_core.member.MemoryMemberRepository;
@@ -39,7 +40,15 @@ public class AppConfig {
     }
 
     public DiscountPolicy getDiscountPolicy(){
-        return new FixDiscountPolicy();
+        //return new FixDiscountPolicy();
+        return new RateDiscountPolicy();
+        // 2021.09.06 적용하고 싶은 discountPolicy에 따라서
+        // config에서 policy를 변경해주면, 사용역에 있는 코드들은 변경하지 않아도 된다.
+        // ex) ord erServiceImpl 의 interface에 직접 관여하지 않아도 된다.
+        // 구성영역의 코드만 수정해주면 된다.
+        // dip를 통해 역할과 구현을 분리하고, interface (추상화)와 의존관계를 가져가고 있다.
+        // ocp를 통해서 확장으는 open, 변경에는 close
+
     }
 
 }
