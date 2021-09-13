@@ -2,12 +2,15 @@ package com.example.study_inflearn;
 
 import com.example.study_inflearn.hello_core.Order.OrderServiceImpl;
 import com.example.study_inflearn.hello_core.discount.DiscountPolicy;
-import com.example.study_inflearn.hello_core.discount.FixDiscountPolicy;
 import com.example.study_inflearn.hello_core.discount.RateDiscountPolicy;
 import com.example.study_inflearn.hello_core.member.MemberService;
 import com.example.study_inflearn.hello_core.member.MemberServiceImpl;
 import com.example.study_inflearn.hello_core.member.MemoryMemberRepository;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+
+@Configuration
 public class AppConfig {
 
     //* 역할과 구현을 분리했으며, config에서는 각각의 각각의 역할에 따른 구현 캘르가 모두 드러나야 한다.
@@ -15,6 +18,7 @@ public class AppConfig {
 
 
     // 멤버 서비스 역할
+    @Bean
     public MemberService memberService(){
 
         return new MemberServiceImpl(getMemberRepository());
@@ -22,11 +26,13 @@ public class AppConfig {
     }
 
     // 멤버 repositorty 역할
-    private MemoryMemberRepository getMemberRepository() {
+    @Bean // 스프링 컨테이너에 등록
+    public MemoryMemberRepository getMemberRepository() {
         return new MemoryMemberRepository();
     }
 
     // order service 역할
+    @Bean
     public OrderServiceImpl orderService(){
 
         return new OrderServiceImpl(getMemberRepository(), getDiscountPolicy());
@@ -39,6 +45,7 @@ public class AppConfig {
         // 그렇기에 OCP에도 지키고 있다.
     }
 
+    @Bean
     public DiscountPolicy getDiscountPolicy(){
         //return new FixDiscountPolicy();
         return new RateDiscountPolicy();
