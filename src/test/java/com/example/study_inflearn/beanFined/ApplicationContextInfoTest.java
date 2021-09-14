@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 public class ApplicationContextInfoTest {
 
@@ -26,6 +27,33 @@ public class ApplicationContextInfoTest {
                     return bean;
                 }
         ).findAny();
+
+    }
+
+
+    @Test
+    @DisplayName("빈 문자열 테스트")
+    public void findBlankTest() {
+
+        try {
+
+
+            String ss = "";
+            Optional<String> msg = Optional.ofNullable(ss);
+
+            if (msg.isPresent()) {
+                System.out.println(" 빈 문자열 허락한다.");
+                throw new NullPointerException("null");
+            }
+
+        } catch (NullPointerException e) {
+
+            System.out.println("catch 빈 문자열 허락한다");
+            throw new NullPointerException("null");
+
+        } finally {
+            System.out.println("final?");
+        }
 
     }
 
