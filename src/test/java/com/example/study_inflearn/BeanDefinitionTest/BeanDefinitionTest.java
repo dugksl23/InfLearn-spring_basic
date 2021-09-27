@@ -9,18 +9,20 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class BeanDefinitionTest {
 
-    ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+    AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
 
     @Test
     @DisplayName("빈설정 메타 정보 확인")
     void findApplicationBean() {
         String[] beanDefinitionNames = ac.getBeanDefinitionNames();
         for (String beanDefinitionName : beanDefinitionNames) {
-            System.out.println("method : " + beanDefinitionName + ", type : " + ac.getBean(beanDefinitionName));
+            BeanDefinition beanDefinition = ac.getBeanDefinition(beanDefinitionName);
+            if (beanDefinition.getRole() == BeanDefinition.ROLE_APPLICATION) {
+                System.out.println("method : " + beanDefinitionName + ", type : " + beanDefinition);
+
+            }
         }
     }
-
-
 
 
 }
