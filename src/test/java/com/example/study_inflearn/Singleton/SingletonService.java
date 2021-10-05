@@ -9,9 +9,10 @@ public class SingletonService {
 
     public static synchronized SingletonService getInstance() {
 
-        if (instance == null) {
+        if (instance == null) {//지연 로딩
             instance = new SingletonService();
         }
+        // 즉시로딩은 바로 private static에 new 한다.
         return instance;
     }
 
