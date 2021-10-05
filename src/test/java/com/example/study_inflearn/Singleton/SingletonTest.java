@@ -1,10 +1,12 @@
 package com.example.study_inflearn.Singleton;
 
 import com.example.study_inflearn.AppConfig;
+import com.example.study_inflearn.hello_core.member.MemberService;
 import com.example.study_inflearn.hello_core.member.MemoryMemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -48,4 +50,22 @@ public class SingletonTest {
         // 참조값의 same ==
         assertThat(instance).isSameAs(instance2);
     }
+
+    @Test
+    @DisplayName("스프링 컨테이너와 싱글톤")
+    void singletonContainer() {
+
+        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+        MemberService memberService = ac.getBean("memberService", MemberService.class);
+        MemberService memberService2 = ac.getBean("memberService", MemberService.class);
+
+        // euqals 타입이 같은지
+        assertThat(memberService).isEqualTo(memberService2);
+
+        // 참조값의 same ==
+        //assertThat(memberService).isSameAs(memberService2);
+
+
+    }
+
 }
