@@ -3,9 +3,7 @@ package com.example.study_inflearn;
 import com.example.study_inflearn.hello_core.Order.OrderServiceImpl;
 import com.example.study_inflearn.hello_core.discount.DiscountPolicy;
 import com.example.study_inflearn.hello_core.discount.RateDiscountPolicy;
-import com.example.study_inflearn.hello_core.member.MemberService;
-import com.example.study_inflearn.hello_core.member.MemberServiceImpl;
-import com.example.study_inflearn.hello_core.member.MemoryMemberRepository;
+import com.example.study_inflearn.hello_core.member.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,7 +17,7 @@ public class AppConfig {
 
     // 멤버 서비스 역할
     @Bean
-    public MemberService memberService(){
+    public MemberService memberService() {
 
         return new MemberServiceImpl(getMemberRepository());
 
@@ -33,7 +31,7 @@ public class AppConfig {
 
     // order service 역할
     @Bean
-    public OrderServiceImpl orderService(){
+    public OrderServiceImpl orderService() {
 
         return new OrderServiceImpl(getMemberRepository(), getDiscountPolicy());
         // 20.08.23 (월(
@@ -46,7 +44,7 @@ public class AppConfig {
     }
 
     @Bean
-    public DiscountPolicy getDiscountPolicy(){
+    public DiscountPolicy getDiscountPolicy() {
         //return new FixDiscountPolicy();
         return new RateDiscountPolicy();
         // 2021.09.06 적용하고 싶은 discountPolicy에 따라서
@@ -57,5 +55,6 @@ public class AppConfig {
         // ocp를 통해서 확장으는 open, 변경에는 close
 
     }
+
 
 }

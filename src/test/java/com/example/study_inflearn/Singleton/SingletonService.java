@@ -13,7 +13,6 @@ public class SingletonService {
             instance = new SingletonService();
         }
         // 즉시로딩은 바로 private static에 new 한다.
-용        //
         return instance;
     }
 

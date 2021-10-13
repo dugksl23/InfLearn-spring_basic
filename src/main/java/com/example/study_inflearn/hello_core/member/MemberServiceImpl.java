@@ -1,6 +1,6 @@
 package com.example.study_inflearn.hello_core.member;
 
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
 
@@ -16,5 +16,10 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public Member findById(Long memberId) {
         return memberRepository.findById(memberId);
+    }
+
+    // Test 용도 함수
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
     }
 }

@@ -14,6 +14,7 @@ public class OrderServiceImpl implements OrderService {
     // ==== 정율 할인 정책 적용 21.08.18 (수)
     private final DiscountPolicy discountPolicy;
 
+
     // 즉 service의 구현체는 interface와의 의존관계만을 갖는다.
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
@@ -30,6 +31,13 @@ public class OrderServiceImpl implements OrderService {
         // OCP의 확장성을 고려하여 itemPrice도 함께 넘긴다.
         return new Order(memberId, itemName, itemPrice, discountPrice);
 
+    }
+
+    ;
+
+    // Singleton test를 위한 memoberRepository 함수
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
     }
 
 
