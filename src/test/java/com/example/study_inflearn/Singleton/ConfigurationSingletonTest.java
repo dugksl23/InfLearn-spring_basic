@@ -12,19 +12,29 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class ConfigurationSingletonTest {
 
     @Test
-    void configurationTest(){
+    void configurationTest() {
         ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
 
         MemberServiceImpl memberService = ac.getBean("memberService", MemberServiceImpl.class);
         OrderServiceImpl orderService = ac.getBean("orderService", OrderServiceImpl.class);
         MemberRepository memberRepository = ac.getBean("getMemberRepository", MemberRepository.class);
 
-        System.out.println("memberService.getMemberRepository : "+memberService.getMemberRepository());
-        System.out.println("orderService.getMemberRepository : "+orderService.getMemberRepository());
-        System.out.println("memberRepository : "+memberRepository);
+        System.out.println("memberService.getMemberRepository : " + memberService.getMemberRepository());
+        System.out.println("orderService.getMemberRepository : " + orderService.getMemberRepository());
+        System.out.println("memberRepository : " + memberRepository);
 
         Assertions.assertThat(memberService.getMemberRepository()).isEqualTo(orderService.getMemberRepository());
         Assertions.assertThat(memberRepository).isSameAs(orderService.getMemberRepository());
+    }
+
+    @Test
+    void configDeep() {
+
+        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+        AppConfig bean = ac.getBean(AppConfig.class);
+
+        System.out.println("bean class type : " + bean.getClass());
+
     }
 
 
