@@ -1,5 +1,9 @@
 package com.example.study_inflearn.hello_core.Order;
 
+
+import org.springframework.stereotype.Component;
+
+//@Component 하나의 프로세스당 interface의 구현체로 등록될 class는 하나여야 한다.
 public class Order {
 
     private Long memberId;

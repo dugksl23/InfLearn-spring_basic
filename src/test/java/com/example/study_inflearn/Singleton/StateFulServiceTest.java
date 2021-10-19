@@ -26,7 +26,7 @@ class StateFulServiceTest {
         int 과자2 = stateFulService1.order("과자", 2000);
         System.out.println("price : " + 과자2);
 
-        Assertions.assertThat(과자1).isEqualTo(과자2);
+        Assertions.assertThat(과자1).isNotSameAs(과자2);
     }
 
 

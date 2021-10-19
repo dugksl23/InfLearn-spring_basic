@@ -1,11 +1,13 @@
 package com.example.study_inflearn.hello_core.Order;
 
 import com.example.study_inflearn.hello_core.discount.DiscountPolicy;
-import com.example.study_inflearn.hello_core.discount.RateDiscountPolicy;
 import com.example.study_inflearn.hello_core.member.Member;
 import com.example.study_inflearn.hello_core.member.MemberRepository;
-import com.example.study_inflearn.hello_core.member.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+
+@Component
 public class OrderServiceImpl implements OrderService {
 
     private final MemberRepository memberRepository; // 멤조 조회 및 멤버별 Grade 확인
@@ -16,6 +18,7 @@ public class OrderServiceImpl implements OrderService {
 
 
     // 즉 service의 구현체는 interface와의 의존관계만을 갖는다.
+    @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;

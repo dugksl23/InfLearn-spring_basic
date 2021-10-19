@@ -31,7 +31,7 @@ public class ApplicationContextInfoTest {
     }
 
 
-    @Test
+    //@Test
     @DisplayName("빈 문자열 테스트")
     public void findBlankTest() {
 
