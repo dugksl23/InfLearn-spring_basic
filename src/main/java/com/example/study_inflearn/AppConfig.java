@@ -3,10 +3,11 @@ package com.example.study_inflearn;
 import com.example.study_inflearn.hello_core.Order.OrderServiceImpl;
 import com.example.study_inflearn.hello_core.discount.DiscountPolicy;
 import com.example.study_inflearn.hello_core.discount.RateDiscountPolicy;
-import com.example.study_inflearn.hello_core.member.*;
+import com.example.study_inflearn.hello_core.member.MemberService;
+import com.example.study_inflearn.hello_core.member.MemberServiceImpl;
+import com.example.study_inflearn.hello_core.member.MemoryMemberRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 
 @Configuration

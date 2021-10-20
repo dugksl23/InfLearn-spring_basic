@@ -5,7 +5,6 @@ import com.example.study_inflearn.hello_core.Filters.BeanExclude;
 import com.example.study_inflearn.hello_core.Filters.BeanInclude;
 import com.example.study_inflearn.hello_core.Filters.MyExcludeComponent;
 import com.example.study_inflearn.hello_core.Filters.MyIncludeComponent;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,11 +12,10 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
-import org.springframework.stereotype.Component;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.springframework.context.annotation.ComponentScan.*;
+import static org.springframework.context.annotation.ComponentScan.Filter;
 
 @SpringBootTest
 public class ComponentFilterAppConfigTest {
