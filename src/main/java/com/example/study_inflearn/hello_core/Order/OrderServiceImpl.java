@@ -10,19 +10,35 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderServiceImpl implements OrderService {
 
+    @Autowired
     private final MemberRepository memberRepository; // 멤조 조회 및 멤버별 Grade 확인
     //private final DiscountPolicy discountPolicy = new FixDiscountPolicy(); // 고정 할인 정책
 
     // ==== 정율 할인 정책 적용 21.08.18 (수)
+    @Autowired
     private final DiscountPolicy discountPolicy;
 
 
     // 즉 service의 구현체는 interface와의 의존관계만을 갖는다.
-    @Autowired
+    //@Autowired
+    // 21.10.20 생성자가 하나일 때에는 생략 가능.
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        System.out.println("1. OrderServiceImpl 생성자 주입~");
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
+
+//    @Autowired
+//    public void setMemberRepository(MemberRepository memberRepository) {
+//        System.out.println("2. OrderServiceImpl MemberRepository 수정자 주입~");
+//        this.memberRepository = memberRepository;
+//    }
+//
+//    @Autowired
+//    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+//        System.out.println("2. OrderServiceImpl DiscountPolicy 수정자 주입~");
+//        this.discountPolicy = discountPolicy;
+//    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
