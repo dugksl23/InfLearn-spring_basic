@@ -10,6 +10,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderServiceImpl implements OrderService {
 
+
+
+
     @Autowired
     private final MemberRepository memberRepository; // 멤조 조회 및 멤버별 Grade 확인
     //private final DiscountPolicy discountPolicy = new FixDiscountPolicy(); // 고정 할인 정책
