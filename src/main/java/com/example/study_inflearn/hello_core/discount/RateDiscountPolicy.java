@@ -2,10 +2,14 @@ package com.example.study_inflearn.hello_core.discount;
 
 import com.example.study_inflearn.hello_core.member.Grade;
 import com.example.study_inflearn.hello_core.member.Member;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 
-//@Component
+@Component
+@Qualifier("rateDiscountPolicy")
+@Primary
 public class RateDiscountPolicy implements DiscountPolicy {
 
     // 등급에 따른 할인 정책율을 다르게 가져간다.

@@ -2,10 +2,12 @@ package com.example.study_inflearn.hello_core.discount;
 
 import com.example.study_inflearn.hello_core.member.Grade;
 import com.example.study_inflearn.hello_core.member.Member;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 
 @Component
+@Qualifier("fixDiscountPolicy")
 public class FixDiscountPolicy implements DiscountPolicy {
 
     private final int discountFixAmount = 1000; // 1000원 만 할인.

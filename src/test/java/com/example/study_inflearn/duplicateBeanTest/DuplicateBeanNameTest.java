@@ -2,16 +2,17 @@ package com.example.study_inflearn.duplicateBeanTest;
 
 
 import com.example.study_inflearn.AppConfig;
-import com.example.study_inflearn.hello_core.member.MemberRepository;
 import com.example.study_inflearn.hello_core.member.MemoryMemberRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.*;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.springframework.context.annotation.ComponentScan.*;
+import static org.springframework.context.annotation.ComponentScan.Filter;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
@@ -41,10 +42,10 @@ public class DuplicateBeanNameTest {
     static class duplicateBeanConfig {
 
 
-        @Bean(name = "memoryMemberRepository")
-        public MemberRepository getMemberRepository(){
-            return new MemoryMemberRepository();
-        }
+//        @Bean(name = "memoryMemberRepository")
+//        public MemberRepository getMemberRepository(){
+//            return new MemoryMemberRepository();
+//        }
 
     }
 
