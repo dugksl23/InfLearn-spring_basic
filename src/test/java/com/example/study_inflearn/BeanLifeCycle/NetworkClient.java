@@ -4,7 +4,10 @@ package com.example.study_inflearn.BeanLifeCycle;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
-public class NetworkClient implements InitializingBean, DisposableBean {
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+public class NetworkClient {
 
     private String url;
 
@@ -37,15 +40,27 @@ public class NetworkClient implements InitializingBean, DisposableBean {
         System.out.println("connect : " + url + ", call : " + msg);
     }
 
-    @Override //의존관계 주입 이후,빈이 생성된 시점에 호출되는 콜백함수 == @PostConstructor = InitializingBean,
-    public void afterPropertiesSet() throws Exception {
+//    @Override //의존관계 주입 이후,빈이 생성된 시점에 호출되는 콜백함수 == @PostConstructor = InitializingBean,
+//    public void afterPropertiesSet() throws Exception {
+//        connect();
+//        call("www.hi.com");
+//    }
+//
+//    @Override // 의존관계 주입 이후, 빈이 종료될 떄 호출
+//    public void destroy() throws Exception {
+//        System.out.println("close");
+//        disConnect();
+//    }
+
+
+    @PostConstruct
+    public void init(){
         connect();
-        call("www.hi.com");
+        call("연결 성공");
     }
 
-    @Override // 의존관계 주입 이후, 빈이 종료될 떄 호출
-    public void destroy() throws Exception {
-        System.out.println("close");
+    @PreDestroy
+    public void close(){
         disConnect();
     }
 }

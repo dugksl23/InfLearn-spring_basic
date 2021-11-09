@@ -13,7 +13,7 @@ public class LifeCycleTest {
 
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(LifeCycleApp.class);
         NetworkClient netWorkClient = context.getBean("networkClient", NetworkClient.class);
-        
+        context.close();
 
     }
 
@@ -21,7 +21,7 @@ public class LifeCycleTest {
     @Configuration
     static class LifeCycleApp {
 
-        @Bean
+        @Bean(initMethod = "init", destroyMethod = "close")
         public NetworkClient networkClient() {
             NetworkClient client = new NetworkClient();
             client.setUrl("hi");
