@@ -1,10 +1,10 @@
 package com.example.study_inflearn.BeanLifeCycle;
 
 
-import jdk.jfr.SettingDefinition;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
 
-
-public class NetworkClient {
+public class NetworkClient implements InitializingBean, DisposableBean {
 
     private String url;
 
@@ -37,5 +37,15 @@ public class NetworkClient {
         System.out.println("connect : " + url + ", call : " + msg);
     }
 
+    @Override //의존관계 주입 이후,빈이 생성된 시점에 호출되는 콜백함수 == @PostConstructor = InitializingBean,
+    public void afterPropertiesSet() throws Exception {
+        connect();
+        call("www.hi.com");
+    }
 
+    @Override // 의존관계 주입 이후, 빈이 종료될 떄 호출
+    public void destroy() throws Exception {
+        System.out.println("close");
+        disConnect();
+    }
 }

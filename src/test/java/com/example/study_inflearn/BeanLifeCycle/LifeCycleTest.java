@@ -13,8 +13,7 @@ public class LifeCycleTest {
 
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(LifeCycleApp.class);
         NetworkClient netWorkClient = context.getBean("networkClient", NetworkClient.class);
-        System.out.println(netWorkClient.getUrl());
-        netWorkClient.connect();
+        
 
     }
 
