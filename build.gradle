@@ -26,6 +26,7 @@ dependencies {
     //lombok 라이브러리 추가 시작
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+    implementation 'javax.inject:javax.inject:1' //gradle 추가 필수
 }
 
 test {
