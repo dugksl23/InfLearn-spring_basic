@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 
-@Configuration
+//@Configuration
 public class AppConfig {
 
     //* 역할과 구현을 분리했으며, config에서는 각각의 각각의 역할에 따른 구현 캘르가 모두 드러나야 한다.
