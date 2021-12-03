@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Scope;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+
 public class PrototypeScope {
 
     @Test
@@ -54,6 +55,7 @@ public class PrototypeScope {
         public Member getMember() {
             return new Member();
         }
+
 
     }
 
