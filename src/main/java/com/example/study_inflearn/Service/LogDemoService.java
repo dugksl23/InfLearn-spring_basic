@@ -11,11 +11,11 @@ import javax.inject.Provider;
 @RequiredArgsConstructor
 public class LogDemoService {
 
-    private final Provider<MyLogger> myLoggerProvider;
-
+//    private final Provider<MyLogger> myLoggerProvider;
+    private final MyLogger myLogger;
 
     public String getUuid() {
-        MyLogger myLogger = myLoggerProvider.get();
+//        MyLogger myLogger = myLoggerProvider.get();
         return myLogger.getUuId();
     }
 }

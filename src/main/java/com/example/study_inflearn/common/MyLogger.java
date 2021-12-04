@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -16,7 +17,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Component
-@Scope("request")
+@Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS) // 12.04 interface일 경우에는 Target_INTERFACE
 @Getter
 @Setter
 @Slf4j
@@ -28,8 +29,6 @@ public class MyLogger {
 
     public MyLogger() {
     }
-
-
 
     public void log(String message) {
         System.out.println(message);
