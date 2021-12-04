@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.inject.Provider;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
@@ -15,18 +16,19 @@ import javax.servlet.http.HttpServletRequest;
 public class LogDemoController {
 
     private final LogDemoService logDemoService;
-    private final MyLogger myLogger;
+    private final Provider<MyLogger> myLoggerProvider;
 
 
-    @RequestMapping("log-demo")
+    @RequestMapping("/log-demo")
     @ResponseBody
     public String getLog(HttpServletRequest request) {
         String requestUrl = request.getRequestURI();
+        MyLogger myLogger = myLoggerProvider.get();
         myLogger.setRequestURL(requestUrl);
 
         myLogger.log("controller test");
-        System.out.println("uuid : " + myLogger.getUuId());
         myLogger.setUuId(logDemoService.getUuid());
+
         return "ok";
 
     }

@@ -3,6 +3,7 @@ package com.example.study_inflearn.common;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Slf4j
+@ToString
 public class MyLogger {
 
     private String uuId;
@@ -30,7 +32,8 @@ public class MyLogger {
 
 
     public void log(String message) {
-        log.debug("log : {}", this);
+        System.out.println(message);
+        System.out.println("log : "+ this.toString());
     }
 
     @PostConstruct
@@ -38,14 +41,13 @@ public class MyLogger {
 
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmssSSS");
         String dateString = format.format(new Date());
-        System.out.println("dateString :"+ dateString); // 20211204134603050
+        //System.out.println("dateString :"+ dateString); // 20211204134603050
         String uuid = UUID.randomUUID().toString();
-        System.out.println("uuid :"+ uuid); // 2d4f58c9-771f-449b-a400-017e3114f49d
+        //System.out.println("uuid :"+ uuid); // 2d4f58c9-771f-449b-a400-017e3114f49d
         uuid = String.format("%040d", new BigInteger(uuid.replace("-", ""), 16)); // - 없애기
-        System.out.println("uuid :"+ uuid); // 2d4f58c9-771f-449b-a400-017e3114f49d
+        //System.out.println("uuid :"+ uuid); // 2d4f58c9-771f-449b-a400-017e3114f49d
         this.uuId = dateString + uuid.substring(uuid.length() - 8); // ex) 2021120413434350212094877
 
-        System.out.println(this.toString());
     }
 
     @PreDestroy
